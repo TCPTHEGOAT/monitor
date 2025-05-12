@@ -11,7 +11,7 @@ Custom Nload Copy Made By TCP
 6. cd monitor
 7. go install github.com/eiannone/keyboard@latest
 8. go get github.com/eiannone/keyboard
-9. go mod init github.com/gorilla/mux
+9. go mod init github.com/eiannone/keyboard
 10. go mod init monitor or go mod init
 11. go mod tidy 
 12. go build nload.go
