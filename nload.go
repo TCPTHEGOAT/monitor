@@ -13,8 +13,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
-
 	"github.com/eiannone/keyboard"
+  "net"
 )
 
 const (
@@ -308,6 +308,27 @@ func cleanup() {
 	keyboard.Close()
 	os.Exit(0)
 }
+func getInterfaceIP(interfaceName string) string {
+    iface, err := net.InterfaceByName(interfaceName)
+    if err != nil {
+        return ""
+    }
+
+    addrs, err := iface.Addrs()
+    if err != nil {
+        return ""
+    }
+
+    for _, addr := range addrs {
+        if ipnet, ok := addr.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+            if ipv4 := ipnet.IP.To4(); ipv4 != nil {
+                return ipv4.String()
+            }
+        }
+    }
+    return ""
+}
+
 func newTraffic() Traffic {
 	return Traffic{
 		min:        math.MaxFloat64,
@@ -557,9 +578,9 @@ func main() {
 			outMax := math.Max(currentStats.outgoing.max, currentStats.outgoing.current*1.2)
 
 			fmt.Print("\033[H\033[2J\033[3J")
-			fmt.Printf("Device %s%s%s [%s] (%d/%d):\n",
-				colorCyan, interfaceName, colorReset, "128.0.118.68",
-				currentIdx+1, len(interfaces))
+fmt.Printf("Device %s%s%s [%s] (%d/%d):\n",
+    colorCyan, interfaceName, colorReset, getInterfaceIP(interfaceName),
+    currentIdx+1, len(interfaces))
 			fmt.Println(strings.Repeat("=", 120))
 			fmt.Printf("%sIncoming:%s\n", colorGreen, colorReset)
 			fmt.Print(drawGraph(&currentStats.incoming, inMax))
