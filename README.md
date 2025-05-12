@@ -21,3 +21,5 @@ Custom Nload Copy Made By TCP
 3. (auto compiled) screen go run ./nload [optional parameters: -t timeout]
 4. (auto non compiled) screen go run nload.go [optional parameters: -t timeout]
 
+# ADDITIONAL
+if it doesnt fit your screen size edit line 21 : GRAPH_HEIGHT = 20 to your needed height. or just resize your ssh terminal
