@@ -1,5 +1,5 @@
 # monitor
-Custom Nload Copy Made By TCP
+Custom Nload Copy Network Monitor For Purely Traffic Made By TCP
 
 # SETUP
 
