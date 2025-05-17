@@ -7,7 +7,7 @@ Custom Nload Copy Network Monitor For Purely Traffic Made By TCP
 2. apt install golang-go 
 3. apt install git
 4. apt install screen
-5. git clone https://github.com/TCPTHEGOAT/monitor
+5. git clone https://github.com/tcpfailed/monitor
 6. cd monitor
 7. go mod init monitor or go mod init
 8. go mod tidy 
